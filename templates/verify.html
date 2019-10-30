@@ -1,0 +1,65 @@
+<!DOCTYPE>
+<html>
+<head>
+<title>Verification Page</title>
+<style>
+fieldset{
+margin-left: 37.5%;
+width: 250px;
+height: 150px;
+margin-top: 12.5%;
+padding: 20px;
+border-radius: 2px;
+background-image: url('/static/img/bg.jpg');
+color: white;
+}
+h1{
+  margin-left: 35%;
+  font-size: 48px;
+}
+.submit{
+  background-color: #4CAF50;
+ border: none;
+ color: white;
+ padding: 7.5px;
+ text-align: center;
+ text-decoration: none;
+ display: inline-block;
+ font-size: 16px;
+  margin-left: 90px;
+  margin-top: 30px;
+}
+body{
+  background-image: url('/static/img/fr.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.un{
+  width: 100%;
+}
+</style>
+</head>
+<body>
+<h1>Face Recognition</h1><br><br>
+<fieldset>
+<form name="fr" action="{{url_for('predict') }}" method="post">
+  Username :<br><br>
+  <input type="text" placeholder="Enter Username" class="un" name='un'><br><br>
+  <input type="submit" value="Verify" class="submit" >
+</form>
+</fieldset>
+<br>
+<br>
+<script>
+if({{ prediction_text }}==1)
+{
+alert("Congratulations, you are authenticated!");
+window.location.href="index.html";
+}
+else {
+alert("Sorry, you are not verified by the system");
+}
+</script>
+</body>
+</html>
