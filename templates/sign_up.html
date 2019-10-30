@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Sign Up</title>
+<link rel="stylesheet" href="/static/css/sign_up.css">
+<link href="https://fonts.googleapis.com/css?family=Dancing+Script|Lora|Sacramento&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<style>
+.right{
+background-image:url("/static/images/sign_up.jpg");
+}
+body{
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+</style>
+<script>
+function valid()
+{
+  var name = document.sign_up.username.value;
+  var email = document.sign_up.email.value;
+  var mobile = document.sign_up.mobile.value;
+  var pw = document.sign_up.password.value;;
+  var cpw = document.sign_up.password2.value;
+  var isvalid = true;
+    if(name==""||name==null)
+    {
+      alert("Name can't be blank");
+      isvalid = false;
+    }
+    else if(pw.length<6)
+    {
+      alert("Password length should be greater than 6");
+      isvalid = false;
+    }
+   else if(!(cpw==pw))
+    {
+      alert("Passwords do not match!");
+      isvalid = false;
+    }
+    else if (mobile.length!=10) {
+      alert("Please enter a 10 digit mobile number");
+      isvalid = false;
+    }
+  if(isvalid)
+  {
+    alert("Congratilations!You have successfully registered.");
+    window.open("Login.html");
+  }
+  else {
+    alert("Sorry!Registraion failed.");
+  }
+  return isvalid;
+}
+</script>
+</head>
+<body background="/static/images/back.jpg">
+
+<div id="login-box">
+  <div class="left">
+    <h1>Sign up</h1>
+    <form name="sign_up" action="{{url_for('database')}}" method = "post">
+    <input type="text" name='username' placeholder="Username" class="input" />
+    <input type="email" name="email" placeholder="E-mail" class="input" />
+    <input type="number" name="mobile" placeholder="Mobile Number" class="input" />
+    <input type="password" name="password" placeholder="Password" class="input" />
+    <input type="password" name="password2" placeholder="Retype password" class="input" />
+    <input type="submit" id= "sign" name="signup_submit" value="Sign Me Up">
+  </form>
+  </div>
+
+  <div class="right">
+    <strong><span class="loginwith">Sign in with<br />social network</span></strong>
+
+    <button class="social-signin facebook">Log in with facebook</button>
+    <button class="social-signin twitter">Log in with Twitter</button>
+    <button class="social-signin google">Log in with Google+</button>
+  </div>
+  <div class="or">OR</div>
+</div>
+<script>
+if({{ prediction_text }}==1)
+{
+alert("Congratulations, you are registered!");
+window.location.href="index.html";
+}
+else {
+alert("Sorry, there was an error while capturing!");
+}
+</script>
+</body>
+</html>

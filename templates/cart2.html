@@ -1,0 +1,163 @@
+/static/css<!DOCTYPE>
+<html>
+<head>
+  <title>Cart</title>
+    <link rel = "stylesheet" href = "/static/css/cart.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tours and Travels</title>
+    <style>
+      .dropbtn {
+  background-color: #70b8f8;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+  height:190px;
+  width:100px;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 140px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd;}
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: whitesmoke;
+color:black;}
+    .cart{
+      height: 400px;
+    }
+    .sep,.checkout{
+      margin-top: 50px;
+    }
+    .heading,.prod{
+      margin-top: 20px;
+    }
+    .final_price{
+      margin-top: 0;
+    }
+    body, html {
+  height: 100%;
+}
+body {
+  /* The image used */
+  background-image: url("/static/images/cart.jpg");
+  /* Full height */
+  height: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+    </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+     <header id="header">
+        <div class="header1">
+            <label class="label1">Travel buddy</label>
+        </div>
+        <div class="header2">
+            <ul>
+                <li><a href="index.html" active>Home Page</a></li>
+              <li><a href="about.html">About Us</a></li>
+              <div class="dropdown">
+                <button class="dropbtn">PACKAGES</button>
+                <div class="dropdown-content">
+                <a href="goa.html">Goa</a>
+                <a href="ooty.html">Ooty</a>
+                <a href="Manali.html">Manali</a>
+                <a href="darjeeling.html">Darjeeling</a>
+                </div>
+              </div>
+              <li><a href="gallery.html">Gallery</a></li>
+            </ul>
+        </div>
+    </header>
+<!-- Navbar -->
+<div class="cart">
+  <h1 style="color:#3895D3">Shopping Cart </h1>
+  <hr id="top_line"><br>
+  <div class="heading">
+  <span id="unit_label">Passengers</span>
+  <span id="cost_label">Cost</span>
+  <span id="tp_label">Total Price</span>
+</div>
+<div class="prod">
+  <img class = prod_img src="/static/images/goa.jpg">
+  <div class="description">
+    <span class="name"><strong> Goa</strong> </span><br>
+    <span class="desc"> 4 Days and 3 Nights in Goa for 1 person.</span>
+  </div>
+  <button class="mod1" onclick="minus('unit2','cost2','tp2')"><img class="minus" src="/static/images/minus.ico"></button>
+  <input type="number" min="1" class="quantity" id="unit2" value='1'><br>
+  <button class="mod2" onclick="add('unit2','cost2','tp2')"><img class= "plus" src="/static/images/plus.png"></button>
+  <span class="price" id="cost2" value=5500>Rs. 5500</span>
+  <div class="total">
+  <span class ="tot_price" id="tp2" value=5500>Rs. 5500</span>
+  </div></div>
+<form method="post" name="form" id="f1">
+        <div class="tp">
+          <hr class="sep">
+          <p class="final_price" id="fp">Rs. 5,500</p>
+          <input id="tot_amt" name='tot_amt' type='hidden' value="5500"/>
+        </div>
+
+        <input type="submit" name="checkout" class="checkout" value="Checkout" />
+        </form>
+        </div>
+
+
+        <script>
+        function add(t1,t2,t3){
+            var unit = document.getElementById(t1).value;
+            var cost = parseInt(document.getElementById(t2).innerHTML.split(" ")[1]);
+            var b = 1 +  +unit;
+            if(b<=0)
+             {
+             b=1;
+             }
+             document.getElementById(t1).value = b;
+             var tot = cost*b;
+             document.getElementById(t3).innerHTML = "Rs. "+(tot);
+             document.getElementById('fp').innerHTML = "Rs. "+(tot);
+             b=0;
+             document.getElementById("tot_amt").setAttribute('value', tot);
+      }
+      function minus(t1,t2,t3){
+          var unit = document.getElementById(t1).value;
+          var cost = parseInt(document.getElementById(t2).innerHTML.split(" ")[1]);
+          var b = -1 -  -unit;
+          if(b<=0)
+           {
+           b=1;
+           }
+           document.getElementById(t1).value = b;
+           var tot = cost*b;
+           document.getElementById(t3).innerHTML = "Rs. "+(tot);
+           document.getElementById('fp').innerHTML = "Rs. "+(tot);
+           b=0;
+           document.getElementById("tot_amt").setAttribute('value', tot);
+    }
+        </script>
+  </div><br>
+</div>
+</html>
